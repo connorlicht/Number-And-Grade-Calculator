@@ -7,7 +7,7 @@ Written in Python for the first of two final projects for CS II by Connor Licht.
 ### Number Calculator <br />
 The number calculator portion accepts all valid expressions. <br />
 However, it works from left to right and does not take the order of operations into account. <br />
-<img width="300" alt="Screenshot 2023-12-06 152233" src="https://github.com/connorlicht/Number-And-Grade-Calculator/assets/111907619/1a66eb8a-546e-4385-9532-c2bb49757ada"> <br />
+<img width="700" alt="Screenshot 2023-12-06 152233" src="https://github.com/connorlicht/Number-And-Grade-Calculator/assets/111907619/1a66eb8a-546e-4385-9532-c2bb49757ada"> <br />
 
 ### Grade Calculator <br />
 The grade calculator is shown by pressing mode. <br />
