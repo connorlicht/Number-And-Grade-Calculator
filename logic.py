@@ -145,8 +145,9 @@ class Logic(QMainWindow, Ui_MainWindow):
                     try:
                         self.__result /= float(element)
                     except ZeroDivisionError:
-                        self.__result = "Error"
+                        self.label_type.setText("Error")
                         self.__error = True
+                        return
                 elif self.__operator == "%":
                     self.__result %= float(element)
                 elif self.__operator == "":
