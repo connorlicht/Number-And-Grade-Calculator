@@ -5,8 +5,13 @@ import re
 import math
 
 class Logic(QMainWindow, Ui_MainWindow):
-    
-    def __init__(self):
+    """
+    This class is the logic for the calculator.
+    """
+    def __init__(self) -> None:
+        """
+        This method initializes the logic for the calculator.
+        """
         super().__init__()
         self.setupUi(self)
         
@@ -50,8 +55,10 @@ class Logic(QMainWindow, Ui_MainWindow):
 
         self.setFixedSize(600, 500)
         
-        
-    def character(self):
+    def character(self) -> None:
+        """
+        This method takes the character from the button and adds it to the label.
+        """
         self.__input_character = ""
         
         if self.__first_input == True:
@@ -66,7 +73,10 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.__input_character = self.sender().text()
         self.label_type.setText(self.label_type.text() + self.__input_character)
     
-    def backspace(self):
+    def backspace(self) -> None:
+        """
+        This method removes the last character from the output label.
+        """
         if self.__first_input == True:
             self.__first_input = False
             self.label_type.setText("")
@@ -77,7 +87,10 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_type.setText(self.label_type.text()[:-1])
     
         
-    def clear(self):
+    def clear(self) -> None:
+        """
+        This method clears the output label.
+        """
         if self.__first_input == True:
             self.__first_input = False
             self.label_type.setText("")
@@ -85,16 +98,19 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.__error = False
         self.label_type.setText("")
 
-    def compute(self):
+    def compute(self) -> None:
+        """
+        This method computes the expression in the output label. It uses regex to split the expression into a list of operators and numbers.
+        """
         expression_to_split = self.label_type.text()
         
-        # [+*/%] matches any of the self.__operators, \d+ matches any number of digits, \d+\.\d+ matches any number of digits followed by a period followed by any number of digits
+        # [+*/%] matches any of the operators, \d+ matches any number of digits, \d+\.\d+ matches any number of digits followed by a period followed by any number of digits
         # -(?=\d) matches a negative sign followed by a digit
-        # | is the or self.__operator
-        # so it is self.__operator or number or decimal or negative sign followed by a digit
+        # | is the or operator
+        # so it is operator or number or decimal or negative sign followed by a digit
         expression = re.findall('[+*/%]|\-?\d+\.\d+|\-?\d+|-(?=\d)', expression_to_split)
 
-        # This should return if there is more than one self.__operator in a row
+        # This should return if there is more than one operator in a row
         # Should be able to do 1+-1 or 1--1 or 1*-1 or 1/-1 or 1%-1 based on the previous regex statement
 
         for i in range(len(expression) - 1):
@@ -138,7 +154,10 @@ class Logic(QMainWindow, Ui_MainWindow):
 
         self.label_type.setText(f"{self.__result:5.2f}")
         
-    def toggle_mode(self):
+    def toggle_mode(self) -> None:
+        """
+        This method toggles between the calculator and the grade calculator.
+        """
         if self.__mode_togle == True:
             for input_widget in self.input_points + self.label:
                 input_widget.hide()
@@ -159,35 +178,49 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.setFixedSize(600, 800)
             self.__mode_togle = True
             
-    def letter_grade(self, grade):
+    def letter_grade(self, grade) -> str:
+        """
+        This method returns the letter grade based on the number grade.
+
+        :param grade: The number grade.
+        
+        :return self.__letter_grade: The letter grade.
+        """
+        self.__letter_grade = ""
+        
         if grade >= 97:
-            return "A+"
+            self.__letter_grade = "A+"
         elif grade >= 93:
-            return "A"
+            self.__letter_grade = "A"
         elif grade >= 90:
-            return "A-"
+            self.__letter_grade = "A-"
         elif grade >= 87:
-            return "B+"
+            self.__letter_grade = "B+"
         elif grade >= 83:
-            return "B"
+            self.__letter_grade = "B"
         elif grade >= 80:
-            return "B-"
+            self.__letter_grade = "B-"
         elif grade >= 77:
-            return "C+"
+            self.__letter_grade = "C+"
         elif grade >= 73:
-            return "C"
+            self.__letter_grade = "C"
         elif grade >= 70:
-            return "C-"
+            self.__letter_grade = "C-"
         elif grade >= 67:
-            return "D+"
+            self.__letter_grade = "D+"
         elif grade >= 63:
-            return "D"
+            self.__letter_grade = "D"
         elif grade >= 60:
-            return "D-"
+            self.__letter_grade = "D-"
         else:
-            return "F"
+            self.__letter_grade = "F"
+            
+        return self.__letter_grade
                  
-    def grade(self):
+    def grade(self) -> None:
+        """
+        This method calculates the final grade based on the input grades.
+        """
         total = 0
         maximum = 0
         return_list = []
@@ -225,7 +258,10 @@ class Logic(QMainWindow, Ui_MainWindow):
             self.label_total_input.setText("Error")
             return
         
-    def grade_clear(self):
+    def grade_clear(self) -> None:
+        """
+        This method clears the grade calculator.
+        """
         self.label_1.setText("")
         self.label_2.setText("")
         self.label_3.setText("")

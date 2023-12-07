@@ -281,7 +281,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Calculator"))
         self.button_clear.setText(_translate("MainWindow", "AC"))
         self.button_mode.setText(_translate("MainWindow", "Mode"))
         self.button_modulo.setText(_translate("MainWindow", "%"))
